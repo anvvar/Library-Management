@@ -13,71 +13,56 @@ namespace WebApplication2
         {
             try
             {
-                if (Session["role"]==null)
+                if (Session["role"] == null)
                 {
-                    LinkButton1.Visible = true; // user login link button
-                    LinkButton2.Visible = true; // sign up link button
-
-                    LinkButton3.Visible = false; // logout link button
-                    LinkButton7.Visible = false; // hello user link button
-
-
-                    LinkButton6.Visible = true; // admin login link button
-                    LinkButton11.Visible = false; // author management link button
-                    LinkButton12.Visible = false; // publisher management link button
-                    LinkButton8.Visible = false; // book inventory link button
-                    LinkButton9.Visible = false; // book issuing link button
-                    LinkButton10.Visible = false; // member management link button
-
-
-
+                    ShowUserButtons(true);
+                    ShowAdminButtons(false);
+                    LinkButton6.Visible =true; // admin login link button
                 }
-                else if (Session["role"].Equals("user"))
+                else if (Session["role"] != null && Session["role"].ToString() == "user")
                 {
-                    LinkButton1.Visible = false; // user login link button
-                    LinkButton2.Visible = false; // sign up link button
-
+                    ShowUserButtons(false);
+                    ShowAdminButtons(false);
                     LinkButton3.Visible = true; // logout link button
                     LinkButton7.Visible = true; // hello user link button
-                    LinkButton7.Text = "Hello " + Session["username"].ToString();
-
-
-                    LinkButton6.Visible = true; // admin login link button
-                    LinkButton11.Visible = false; // author management link button
-                    LinkButton12.Visible = false; // publisher management link button
-                    LinkButton8.Visible = false; // book inventory link button
-                    LinkButton9.Visible = false; // book issuing link button
+                    LinkButton7.Text = "Hello " + (Session["username"] ?? "User").ToString();
                 }
-                else if (Session["role"].Equals("admin"))
+                else if (Session["role"].ToString() == "admin")
                 {
-                    LinkButton1.Visible = false; // user login link button
-                    LinkButton2.Visible = false; // sign up link button
-
-                    LinkButton3.Visible = true; // logout link button
+                    ShowUserButtons(false);
+                    ShowAdminButtons(true);
+                   
+                    LinkButton3.Visible = true;// logout link button
+                   
                     LinkButton7.Visible = true; // hello user link button
                     LinkButton7.Text = "Hello Admin";
-
-
-                    LinkButton6.Visible = false; // admin login link button
-                    LinkButton11.Visible = true; // author management link button
-                    LinkButton12.Visible = true; // publisher management link button
-                    LinkButton8.Visible = true; // book inventory link button
-                    LinkButton9.Visible = true; // book issuing link button
-                    LinkButton10.Visible = true; // book issuing link button
-
                 }
             }
             catch (Exception ex)
             {
-
+                // Handle the exception here
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
 
+        private void ShowUserButtons(bool visible)
+        {
+            LinkButton1.Visible = visible; // user login link button
+            LinkButton2.Visible = visible; // sign up link button
+            LinkButton3.Visible = false; // logout link button
+            LinkButton7.Visible = false; // hello user link button
+        }
 
-
-
-
-
+        private void ShowAdminButtons(bool visible)
+        {
+            
+            LinkButton8.Visible = visible; // book inventory link button
+            LinkButton9.Visible = visible; // book issuing link button
+            LinkButton10.Visible = visible; // member management link button
+            LinkButton11.Visible = visible; // author management link button
+            LinkButton12.Visible = visible; // publisher management link button
+        }
+    
 
         protected void LinkButton6_Click(object sender, EventArgs e)
         {
@@ -146,7 +131,7 @@ namespace WebApplication2
 
         protected void LinkButton7_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

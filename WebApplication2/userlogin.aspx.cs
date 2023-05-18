@@ -17,47 +17,53 @@ namespace WebApplication2
         protected void Page_Load(object sender, EventArgs e)
         {
         }
-        // user login
+
+       
+
+        // User login
         protected void Button1_Click(object sender, EventArgs e)
         {
             try
             {
-               
+                string username = TextBox1.Text.Trim();
+                string password = TextBox2.Text.Trim();
 
-                string username=TextBox1.Text.Trim();
-                string password=TextBox2.Text.Trim();
-
-                SqlConnection con = new SqlConnection(strcon);
-                con.Open();
-
-
-            string query = "SELECT COUNT(*) FROM member_master_tbl  WHERE member_id = @Username AND password = @Password";
-
-            SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@Username", username);
-            cmd.Parameters.AddWithValue("@Password", password);
-                int count =(int)cmd.ExecuteScalar();
-             if (count>0)
+                using (SqlConnection con = new SqlConnection(strcon))
                 {
-                    Session["LoggedIn"]=true;
-                    Response.Redirect("userprofile.aspx");
-                }
-             else
-                {
-                    Response.Write("<script>alert('Invalid credentials');</script>");
-                }
+                    con.Open();
 
-
+                    string query = "SELECT COUNT(*) FROM member_master_tbl WHERE member_id = @Username AND password = @Password";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Password", password);
+                        int count = (int)cmd.ExecuteScalar();
+                        if (count > 0)
+                        {
+                            Session["role"] = "user";
+                            Response.Redirect("homepage.aspx");
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Invalid credentials');</script>");
+                        }
+                    }
+                }
             }
-        catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Response.Write("An error occurred: " + ex.Message);
             }
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            
             Response.Redirect("signuppage.aspx");
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
