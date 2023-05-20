@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
@@ -7,7 +8,6 @@ using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Configuration;
 
 namespace WebApplication2
 {
@@ -46,7 +46,6 @@ namespace WebApplication2
         // update button click
         protected void Button1_Click(object sender, EventArgs e)
         {
-            //Session["username"].ToString() == "" ||
             if (Session["username"].ToString() == "" || Session["username"] == null)
             {
                 Response.Write("<script>alert('Session Expired Login Again');</script>");
@@ -219,11 +218,6 @@ namespace WebApplication2
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
-        }
-
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

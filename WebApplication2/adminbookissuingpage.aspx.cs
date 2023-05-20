@@ -86,7 +86,7 @@ namespace WebApplication2
                 {
                     con.Open();
                 }
-
+                
 
                 SqlCommand cmd = new SqlCommand("Delete from book_issue_tbl WHERE book_id='" + TextBox1.Text.Trim() + "' AND member_id='" + TextBox2.Text.Trim() + "'", con);
                 int result = cmd.ExecuteNonQuery();
