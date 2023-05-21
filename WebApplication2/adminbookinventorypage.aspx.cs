@@ -24,7 +24,7 @@ namespace WebApplication2
                 fillAuthorPublisherValues();
             }
 
-            GridView1.DataBind();
+             GridView1.DataBind();
         }
 
         // go button click
@@ -150,10 +150,10 @@ namespace WebApplication2
                     {
                         con.Open();
                     }
-                    SqlCommand cmd = new SqlCommand("UPDATE book_master_tbl set book_name=@book_name, genre=@genre, author_name=@author_name, publisher_name=@publisher_name, publish_date=@publish_date, language=@language, edition=@edition, book_cost=@book_cost, no_of_pages=@no_of_pages, book_description=@book_description, actual_stock=@actual_stock, current_stock=@current_stock, book_img_link=@book_img_link where book_id='" + TextBox1.Text.Trim() + "'", con);
+                    SqlCommand cmd = new SqlCommand("UPDATE book_master_tbl set book_name=@book_name, gener=@gener, author_name=@author_name, publisher_name=@publisher_name, publish_date=@publish_date, language=@language, edition=@edition, book_cost=@book_cost, no_of_pages=@no_of_pages, book_description=@book_description, actual_stock=@actual_stock, current_stock=@current_stock, book_img_link=@book_img_link where book_id='" + TextBox1.Text.Trim() + "'", con);
 
                     cmd.Parameters.AddWithValue("@book_name", TextBox2.Text.Trim());
-                    cmd.Parameters.AddWithValue("@genre", genres);
+                    cmd.Parameters.AddWithValue("@gener", genres);
                     cmd.Parameters.AddWithValue("@author_name", DropDownList3.SelectedItem.Value);
                     cmd.Parameters.AddWithValue("@publisher_name", DropDownList2.SelectedItem.Value);
                     cmd.Parameters.AddWithValue("@publish_date", TextBox3.Text.Trim());
@@ -216,7 +216,7 @@ namespace WebApplication2
                     DropDownList3.SelectedValue = dt.Rows[0]["author_name"].ToString().Trim();
 
                     ListBox1.ClearSelection();
-                    string[] genre = dt.Rows[0]["genre"].ToString().Trim().Split(',');
+                    string[] genre = dt.Rows[0]["gener"].ToString().Trim().Split(',');
                     for (int i = 0; i < genre.Length; i++)
                     {
                         for (int j = 0; j < ListBox1.Items.Count; j++)
@@ -264,7 +264,7 @@ namespace WebApplication2
                 DropDownList3.DataValueField = "author_name";
                 DropDownList3.DataBind();
 
-                cmd = new SqlCommand("SELECT publisher_name from publisher_master_table;", con);
+                cmd = new SqlCommand("SELECT publisher_name from publisher_master_tbl;", con);
                 da = new SqlDataAdapter(cmd);
                 dt = new DataTable();
                 da.Fill(dt);
@@ -336,11 +336,11 @@ namespace WebApplication2
                     con.Open();
                 }
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO book_master_tbl(book_id,book_name,genre,author_name,publisher_name,publish_date,language,edition,book_cost,no_of_pages,book_description,actual_stock,current_stock,book_img_link) values(@book_id,@book_name,@genre,@author_name,@publisher_name,@publish_date,@language,@edition,@book_cost,@no_of_pages,@book_description,@actual_stock,@current_stock,@book_img_link)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO book_master_tbl(book_id,book_name,gener,author_name,publisher_name,publish_date,language,edition,book_cost,no_of_pages,book_description,actual_stock,current_stock,book_img_link) values(@book_id,@book_name,@gener,@author_name,@publisher_name,@publish_date,@language,@edition,@book_cost,@no_of_pages,@book_description,@actual_stock,@current_stock,@book_img_link)", con);
 
                 cmd.Parameters.AddWithValue("@book_id", TextBox1.Text.Trim());
                 cmd.Parameters.AddWithValue("@book_name", TextBox2.Text.Trim());
-                cmd.Parameters.AddWithValue("@genre", genres);
+                cmd.Parameters.AddWithValue("@gener", genres);
                 cmd.Parameters.AddWithValue("@author_name", DropDownList3.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@publisher_name", DropDownList2.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@publish_date", TextBox3.Text.Trim());

@@ -148,5 +148,10 @@ namespace WebApplication2
         {
 
         }
+
+        protected void LinkButton4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("viewbooks.aspx");
+        }
     }
 }
