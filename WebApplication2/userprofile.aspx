@@ -1,8 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="userprofile.aspx.cs" Inherits="WebApplication2.userprofile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script >
+               $(document).ready(function () {
+                   $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+               });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <div class="container-fluid">
+    <div class="container-fluid">
       <div class="row">
          <div class="col-md-5">
             <div class="card">
@@ -38,7 +43,7 @@
                      <div class="col-md-6">
                         <label>Date of Birth</label>
                         <div class="form-group">
-                           <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="Password" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="Password" TextMode="Date" ></asp:TextBox>
                         </div>
                      </div>
                   </div>
@@ -162,8 +167,7 @@
                   <div class="row">
                      <div class="col">
                         <center>
-                           <img width="100px" src="images/books1.png"/>
-                        </center>
+                           <img width="100px" src="images/books1.png"/>s</center>
                      </div>
                   </div>
                   <div class="row">
@@ -181,7 +185,18 @@
                   </div>
                   <div class="row">
                      <div class="col">
-                        <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" OnRowDataBound="GridView1_RowDataBound"></asp:GridView>
+                        
+                         <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" >
+                             <Columns>
+                                 <asp:BoundField DataField="member_id" HeaderText="member_id" SortExpression="member_id" />
+                                 <asp:BoundField DataField="member_name" HeaderText="member_name" SortExpression="member_name" />
+                                 <asp:BoundField DataField="book_id" HeaderText="book_id" SortExpression="book_id" />
+                                 <asp:BoundField DataField="book_name" HeaderText="book_name" SortExpression="book_name" />
+                                 <asp:BoundField DataField="issue_date" HeaderText="issue_date" SortExpression="issue_date" />
+                                 <asp:BoundField DataField="due_date" HeaderText="due_date" SortExpression="due_date" />
+                             </Columns>
+                         </asp:GridView>
+                        
                      </div>
                   </div>
                </div>

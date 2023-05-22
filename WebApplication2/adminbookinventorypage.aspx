@@ -197,13 +197,14 @@
             <a href="homepage.aspx"><< Back to Home</a><br>
             <br>
          </div>
-         <div class="col-md-7">
+         <div class ="col-md-7">
             <div class="card">
                <div class="card-body">
                   <div class="row">
                      <div class="col">
                         <center>
                            <h4>Book Inventory List</h4>
+                            <p>user name-admin password - admin</p>
                         </center>
                      </div>
                   </div>

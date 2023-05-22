@@ -140,12 +140,16 @@
                         <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="member_id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="Page_Load">
                             <Columns>
                                 <asp:BoundField DataField="full_name" HeaderText="full_name" SortExpression="full_name" />
-                                <asp:BoundField DataField="member_id" HeaderText="member_id" ReadOnly="True" SortExpression="member_id" />
-                                <asp:BoundField DataField="account_status" HeaderText="account_status" SortExpression="account_status" />
+                                <asp:BoundField DataField="dob" HeaderText="dob" SortExpression="dob" />
                                 <asp:BoundField DataField="contact_no" HeaderText="contact_no" SortExpression="contact_no" />
                                 <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
                                 <asp:BoundField DataField="state" HeaderText="state" SortExpression="state" />
                                 <asp:BoundField DataField="city" HeaderText="city" SortExpression="city" />
+                                <asp:BoundField DataField="pincode" HeaderText="pincode" SortExpression="pincode" />
+                                <asp:BoundField DataField="full_address" HeaderText="full_address" SortExpression="full_address" />
+                                <asp:BoundField DataField="member_id" HeaderText="member_id" ReadOnly="True" SortExpression="member_id" />
+                                <asp:BoundField DataField="password" HeaderText="password" SortExpression="password" />
+                                <asp:BoundField DataField="account_status" HeaderText="account_status" SortExpression="account_status" />
                             </Columns>
                          </asp:GridView>
                      </div>

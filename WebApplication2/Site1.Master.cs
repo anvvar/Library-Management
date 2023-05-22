@@ -146,7 +146,7 @@ namespace WebApplication2
 
         protected void LinkButton7_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("userprofile.aspx");
         }
 
         protected void LinkButton4_Click(object sender, EventArgs e)
